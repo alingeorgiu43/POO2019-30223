@@ -1,6 +1,6 @@
 package javasmmr.zoowsome.models.animals;
 
-public class Mammal extends Animal {
+public abstract class Mammal extends Animal {
 	private float normalBodyTemp;
 	private float percBodyHair;
 

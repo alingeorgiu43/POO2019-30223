@@ -1,6 +1,6 @@
 package javasmmr.zoowsome.models.animals;
 
-public class Aquatic extends Animal{
+public abstract class Aquatic extends Animal{
 	private Integer avgSwimDepth;
 	private WaterType waterType;
 	
