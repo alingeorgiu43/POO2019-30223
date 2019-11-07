@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class NameInverter {
 
-	static int numberOfSpaces(String str) {
+	static int getNrSpaces(String str) {
 		int cont = 0;
-		char ch=' ';
+		char ch = ' ';
 		str = str.trim();
 		for (int i = 0; i < str.length(); i++) {
 			if (str.charAt(i) == ch)
@@ -13,13 +13,13 @@ public class NameInverter {
 		return cont;
 	}
 
-	public static String Invertor(String name) {
+	public static String invertor(String name) {
 		String prefix;
 		String firstName;
 		String lastName;
 		int space1, space2;
-		char ch=' ';
-		int nrSpaces = numberOfSpaces(name);
+		char ch = ' ';
+		int nrSpaces = getNrSpaces(name);
 		if (name == null)
 			return null;
 		else {
@@ -37,13 +37,12 @@ public class NameInverter {
 					lastName = name.substring(space2 + 1);
 					prefix = name.substring(0, space1);
 					return lastName + ", " + firstName + " " + prefix;
-				}
-				else {
+				} else {
 					int cont = 0;
 					for (int i = 0; i < n; i++) {
 						if (name.charAt(i) == ch)
 							cont++;
-						if (nrSpaces - cont+1 == 2) {
+						if (nrSpaces - cont + 1 == 2) {
 							space1 = i;
 							break;
 						}
@@ -61,10 +60,9 @@ public class NameInverter {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		// String name = in.nextLine();
 		String name = "Mr. Ph. FirstName LastName";
 		System.out.println("You entered string " + name);
-		String result = Invertor(name);
+		String result = invertor(name);
 		System.out.println(result);
 	}
 }

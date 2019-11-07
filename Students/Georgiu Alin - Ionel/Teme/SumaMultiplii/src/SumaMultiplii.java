@@ -7,7 +7,6 @@ public class SumaMultiplii {
 		Scanner in = new Scanner(System.in);
 		
 		double n = 9000;
-		//n=in.nextDouble();
 		double sumaMultiplii = 0;
 		for(double i = 1; i < n; i++) {
 			
@@ -15,12 +14,7 @@ public class SumaMultiplii {
 				sumaMultiplii+=i;
 			}
 		}
-		System.out.print(sumaMultiplii);
+		System.out.print("Suma multiplilor este" +sumaMultiplii);
 	}
 
 }
-/* Pentru o variabila intreaga va aparea Overflow in cazul in care sumaMultiplii va depasi valoarea 2147483647
-
-asadar incepand cu valoarea ????? nu mai afiseaza corect,
-iar pentru double...
-*/

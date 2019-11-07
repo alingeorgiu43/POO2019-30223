@@ -1,43 +1,40 @@
-
 public class LargestPalindorme {
-	
+
 	static int palindromFunction(int n) {
-		int nrOglindit=0;
-		while(n!=0) {
-			nrOglindit=nrOglindit*10+n%10;
-			n/=10;
+		int nrOglindit = 0;
+		while (n != 0) {
+			nrOglindit = nrOglindit * 10 + n % 10;
+			n /= 10;
 		}
 		return nrOglindit;
 	}
 
-	public static void main(String[] args) {
-		
-		int upLimit = 9999;
-		int lowLimit = 1000;
-		
+	static int palindrom(int lowLimit, int upLimit) {
 		int maxProduct = 0;
-		
-		for(int i=upLimit;i>=lowLimit;i--) {
-		
-			for(int j=i;j>=lowLimit;j--) {
-				
-				int product=i*j;
-				if(product < maxProduct)
+
+		for (int i = upLimit; i >= lowLimit; i--) {
+
+			for (int j = i; j >= lowLimit; j--) {
+
+				int product = i * j;
+				if (product < maxProduct)
 					break;
-	
-				int nrOglindit=palindromFunction(product);
-				
-				if(product == nrOglindit && product >maxProduct)
-					maxProduct=product;
+
+				int nrOglindit = palindromFunction(product);
+
+				if (product == nrOglindit && product > maxProduct)
+					maxProduct = product;
 			}
 		}
-		System.out.println(maxProduct); 
+		return maxProduct;
+	}
 
+	public static void main(String[] args) {
+		
+		int maxProduct=palindrom(100,999);
+		System.out.println("Max Product for 3 digits is: "+maxProduct);
+		maxProduct=palindrom(1000,9999);
+		System.out.println("Max Product for 4 digits is: "+maxProduct);
 	}
 
 }
-
-/*
-MaxProduct of 2 numbers each of 3 digits is 906609
-MaxProduct of 2 numbers each of 4 digits is 99000099
-*/
