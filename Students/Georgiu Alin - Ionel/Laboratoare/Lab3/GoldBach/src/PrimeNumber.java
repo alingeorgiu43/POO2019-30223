@@ -1,5 +1,5 @@
 
-public class PrimeNumber{
+public abstract class PrimeNumber {
 	public static boolean isPrime(int n) {
 		int prim = 1;
 
@@ -13,6 +13,5 @@ public class PrimeNumber{
 		if (prim == 0)
 			return false;
 		return true;
-
 	}
 }

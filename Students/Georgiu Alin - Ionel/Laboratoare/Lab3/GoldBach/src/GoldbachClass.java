@@ -1,5 +1,5 @@
 
-public class GoldbachClass{
+public abstract class GoldbachClass {
 	public static void goldbach(int n) {
 
 		if (n < 2) {
