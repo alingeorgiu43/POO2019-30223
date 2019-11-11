@@ -1,196 +1,169 @@
-import java.math.*;
-import java.util.*;
-import java.util.Scanner;
-import java.math.BigDecimal;
 import java.math.BigDecimal;
 
 public class MatrixOperations {
+	public static BigDecimal[][] add(BigDecimal[][] a, BigDecimal[][] b) {
+		BigDecimal[][] c = new BigDecimal[100][100];
 
-	public static BigDecimal[][] addMatrix(BigDecimal[][] matrix1, BigDecimal[][] matrix2) {
-		// presunpun ca matricele au aceasi dimnesiune
-		int row1, row2, col1, col2;
-		row1 = matrix1.length;
-		row2 = matrix2.length;
-		col1 = matrix1[0].length;
-		col2 = matrix2[0].length;
-		BigDecimal[][] sumMatrix = new BigDecimal[row1][col2];
-		// verificam daca se poate face operatia
-		if (row1 != row2)
+		int rowsa = a.length;
+		int colsa = a[0].length;
+		int rowsb = b.length;
+		int colsb = b[0].length;
+		if (rowsa != rowsb || colsa != colsb) {
+			System.out.println("Operation cannot be done, check matrices");
 			return null;
-		if (col1 != col2)
-			return null;
-		for (int i = 0; i < row1; i++) {
-			for (int j = 0; j < col1; j++) {
-				sumMatrix[i][j] = matrix1[i][j].add(matrix2[i][j]);
+		}
+		for (int i = 0; i < rowsa; i++) {
+			for (int j = 0; j < colsa; j++) {
+				c[i][j] = a[i][j].add(b[i][j]);
 			}
 		}
-		return sumMatrix;
+		return c;
 	}
 
-	public static BigDecimal[][] subtractMatrix(BigDecimal[][] matrix1, BigDecimal[][] matrix2) {
-		// presunpun ca matricele au aceasi dimnesiune
-		int row1, row2, col1, col2;
-		row1 = matrix1.length;
-		row2 = matrix2.length;
-		col1 = matrix1[0].length;
-		col2 = matrix2[0].length;
-		BigDecimal[][] substractMatrix = new BigDecimal[row1][col2];
-		// verificam daca se poate face operatia
-		if (row1 != row2)
+	public static BigDecimal[][] subtract(BigDecimal[][] a, BigDecimal[][] b) {
+		BigDecimal[][] c = new BigDecimal[100][100];
+
+		int rowsa = a.length;
+		int colsa = a[0].length;
+		int rowsb = b.length;
+		int colsb = b[0].length;
+		if (rowsa != rowsb || colsa != colsb) {
+			System.out.println("Operation cannot be done, check matrices");
 			return null;
-		if (col1 != col2)
+		}
+		for (int i = 0; i < rowsa; i++) {
+			for (int j = 0; j < colsa; j++) {
+				c[i][j] = a[i][j].subtract(b[i][j]);
+			}
+		}
+		return c;
+	}
+
+	public static BigDecimal[][] multiply(BigDecimal[][] a, BigDecimal[][] b) {
+		BigDecimal[][] c = new BigDecimal[100][100];
+
+		int rowsa = a.length;
+		int colsa = a[0].length;
+		int rowsb = b.length;
+		int colsb = b[0].length;
+		if (rowsa != rowsb || colsa != colsb) {
+			System.out.println("Operation cannot be done, check matrices");
 			return null;
-		for (int i = 0; i < row1; i++) {
-			for (int j = 0; j < col1; j++) {
-				sumMatrix[i][j] = matrix1[i][j].substract(matrix2[i][j]);
-			}
 		}
-		return substractMatrix;
-	}
-
-	public static BigDecimal[] multiplyMatrixByScalar(BigDecimal[] matrix,BigDecimal scalar) {
-		int row=matrix.length;
-		int col=matrix[0].length;
-		Big Decimal[] scalMatrix=new BigDecimal[row][col];
-		
-		for(int i=0;i<row;i++) {
-			for(int j=0;j<col;j++) {
-				scalMatrix[i][j]=scalMatrix[i][j].multiply(scalar);
-			}
-		}
-		return scalMatrix;
-	}
-
-	public static BigDecimal[][] multiplyMatrix(BigDecimal[] matrix1, BigDecimal matrix2) {
-		int row1, row2, col1, col2;
-		row1 = matrix1.length;
-		row2 = matrix2.length;
-		col1 = matrix1[0].length;
-		col2 = matrix2[0].length;
-		BigDecimal[][] mulMatrix = new BigDecimal[row1][col2];
-		if (row1 != row2)
-			return -1;
-		if (col1 != col2)
-			return -1;
-
-		for (int i = 0; i < row1; i++) {
-			for (int j = 0; j < col1; j++) {
-				for (int t = 0; t < col1; t++) {
-					mulMatrix[i][j] = mulMatrix[i][j].add(matrix1[i][k].multiply(matrix2[k][j]));
-				}
-
-			}
-		}
-		return mulMatrix;
-	}
-
-	public static BigDecimal det(BigDecimal[][] matrix) {
-		int col = matrix[0].length;
-		int detSign = 1;
-
-		BigDecimal resultD = BigDecimal.valueOf(0);
-		if (col == 1)
-			return matrix[0][0];
-		if (matrix.length != col)
-			return -1;
-		if (col == 2) {
-			BigDecimal x = new BigDecimal(1);
-			BigDecimal y = new BigDecimal(1);
-			resultD = x.multiply(a[1][1]);
-			resultD = x.multiply(a[0][0]);
-			resultD = y.multiply(a[1][0]);
-			resultD = y.multiply(a[0][1]);
-			resultD = x.subtract(rez2);
-		}
-		return resultD;
-	}
-
-	public static int equalMatrix(BigDecimal[] matrix1, BigDecimal[] matrix2) {
-		int row1, row2, col1, col2;
-		row1 = matrix1.length;
-		row2 = matrix2.length;
-		col1 = matrix1[0].length;
-		col2 = matrix2[0].length;
-		if (row1 != row2 || col1 != col2)
-			return -1;
-		for (int i = 0; i < row2; i++)
-			for (j = 0; j < col2; j++)
-				if (matrix1[i][j] != matrix2[i][j])
-					return -1;
-		return 1;
-	}
-
-	public static int isIdenitityMatrix(BigDecimal[] matrix) {
-		int row = matrix.length;
-		for (int i = 0; i < row; i++)
-			if (matrix[i][i].compareTo(1))
-				return -1;
-		return 1;
-	}
-
-	public static int matrixIsZero(BigDecimal[] matrix) {
-		int row = matrix.length;
-		int col = matrix[0].length;
-		for (int i = 0; i < row; i++)
-			for (int j = 0; j < col; j++)
-				if (matrix[i][j].compareTo(0))
-					return -1;
-		return 1;
-	}
-
-	static void getCofactor(BigDecimal mat[][], int BigDecimal[][], int p, int q, int n) {
-		int i = 0, j = 0;
-
-		for (int row = 0; row < n; row++) {
-			for (int col = 0; col < n; col++) {
-				if (row != p && col != q) {
-					temp[i][j++] = mat[row][col];
-
-					if (j == n - 1) {
-						j = 0;
-						i++;
-					}
+		for (int i = 0; i < rowsa; i++) {
+			for (int j = 0; j < colsa; j++) {
+				for (int k = 0; k < colsa; k++) {
+					c[i][j] = c[i][j].add(a[i][k].multiply(b[k][j]));
 				}
 			}
 		}
+		return c;
 	}
 
-	static int determinantOfMatrix(BigDecimal mat[][], int n) {
-		int D = 0;
+	public static BigDecimal[][] multiplyByScalar(BigDecimal[][] a, int k) {
+
+		int rowsa = a.length;
+		int colsa = a[0].length;
+
+		for (int i = 0; i < rowsa; i++) {
+			for (int j = 0; j < colsa; j++) {
+				a[i][j].multiply(BigDecimal.valueOf(k));
+			}
+		}
+		return a;
+	}
+
+	static BigDecimal determinant(BigDecimal[][] a, int n) {
+		BigDecimal[][] aux = new BigDecimal[n][n];
+		BigDecimal delta = new BigDecimal("0");
+		BigDecimal coef = new BigDecimal("1");
+		BigDecimal coef2 = new BigDecimal("-1");
 
 		if (n == 1)
-			return mat[0][0];
-
-		BigDecimal temp[][] = new BigDecimal[n][n];
-
-		int sign = 1;
-
-		for (int f = 0; f < n; f++) {
-			getCofactor(mat, temp, 0, f, n);
-			D += sign * mat[0][f] * determinantOfMatrix(temp, n - 1);
-
-			sign = -sign;
-		}
-
-		return D;
-	}
-
-	public static void main(String[] args) {
-		BigDecimal matrix1[][] = { { new BigDecimal(1), new BigDecimal(-1), new BigDecimal(5) },
-				{ new BigDecimal(2), new BigDecimal(-2), new BigDecimal(6) },
-				{ new BigDecimal(3), new BigDecimal(-3), new BigDecimal(7) } };
-
-		BigDecimal matrix2[][] = { { new BigDecimal(3), new BigDecimal(1), new BigDecimal(-1) },
-				{ new BigDecimal(2), new BigDecimal(7), new BigDecimal(-2) },
-				{ new BigDecimal(9), new BigDecimal(3), new BigDecimal(9) } };
-		int n=3;
-		BigDecimal matrix[][];
-		matrix=addMatrix(matrix1,matrix2);
-		for(int i=0;i<n;i++) {
-			for(int j=0;j<n;j++) {
-				System.out.print(matrix[i][j]+" ");
+			delta = a[1][1];
+		else {
+			for (int k = 1; k <= n; k++) {
+				for (int i = 2; i <= n; i++)
+					for (int j = 1; j <= n; j++) {
+						if (j < k)
+							aux[i - 1][j] = a[i][j];
+						if (j > k)
+							aux[i - 1][j - 1] = a[i][j];
+					}
+				BigDecimal aux1 = a[1][k];
+				aux1.multiply(coef);
+				delta.add(aux1.multiply(determinant(aux, n - 1)));
+				coef.multiply(coef2);
 			}
-			System.out.println();
+		}
+		return delta;
+	}
+
+	public static void areEqual(BigDecimal[][] a, BigDecimal[][] b) {
+		int ok = 1;
+		int rowsa = a.length;
+		int colsa = a[0].length;
+		int rowsb = b.length;
+		int colsb = b[0].length;
+		if (rowsa != rowsb || colsa != colsb) {
+			System.out.println("Operation cannot be done, check matrices");
+			return;
+		}
+
+		for (int i = 0; i < rowsa; i++)
+			for (int j = 0; j < colsa; j++)
+				if (a[i][j] != b[i][j])
+					ok = 0;
+		if (ok == 1)
+			System.out.println("Matrices are equal");
+		else
+			System.out.println("Matrices are not equal");
+	}
+
+	public static void isZeroMatrix(BigDecimal[][] a) {
+		int rowsa = a.length;
+		int colsa = a[0].length;
+		for (int i = 0; i < rowsa; i++)
+			for (int j = 0; j < colsa; j++)
+				if (a[i][j].intValue() != 0) {
+					System.out.println("Matrix does not contain only 0s.");
+					return;
+				}
+		System.out.println("Matrix contains only 0s");
+	}
+
+	public static void isIdenitityMatrix(BigDecimal[][] a) {
+		int rowsa = a.length;
+		for (int i = 0; i < rowsa; i++)
+			if (a[i][i].intValue() != 1) {
+				System.out.println("Matrix is not an identity matrix");
+				return;
+			}
+		System.out.println("Matrix is an identity matrix");
+	}
+
+	public static float fillDegree(BigDecimal[][] a) {
+		float k = 0;
+		BigDecimal c = new BigDecimal("0");
+		int rowsa = a.length;
+		int colsa = a[0].length;
+		for (int i = 0; i < rowsa; i++)
+			for (int j = 0; j < colsa; j++) {
+				if (a[i][j].compareTo(c) == 0)
+					k = k + 1;
+			}
+		return k / rowsa / rowsa;
+	}
+
+	public static void printMatrix(BigDecimal[][] a) {
+		int rowsa = a.length;
+		int colsa = a[0].length;
+		for (int i = 0; i < rowsa; i++) {
+			for (int j = 0; j < colsa; j++) {
+				 System.out.print(a[i][j] + " ");
+			}
+			System.out.println(" ");
 		}
 	}
+
 }
