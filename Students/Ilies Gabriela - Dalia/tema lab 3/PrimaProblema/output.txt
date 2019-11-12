@@ -1,0 +1,11 @@
+Adunarea: -18x^0 +3x^1 -2x^2 +7x^3 -2x^4 +2x^6 -4x^7 +5x^8 
+Scaderea: -16x^0 +3x^1 +2x^2 -1x^3 -2x^4 +2x^6 -4x^7 +5x^8 
+Inmultirea: 17x^0 -3x^1 -3x^3 +2x^4 -2x^6 +4x^7 -5x^8 -10x^10 +20x^11 
+Inmultirea primului polinom cu 4: -68x^0 +12x^1 +12x^3 -8x^4 +8x^6 -16x^7 +20x^8 
+Inmultirea celui de al doilea polinom cu 4: -4x^0 -8x^2 +16x^3 
+primulPolinom(5)=-158354286
+alDoileaPolinom(5)=2449
+primulPolinom(2)=-475
+alDoileaPolinom(2)=55
+primulPolinom(9)=-407440274
+alDoileaPolinom(9)=26081
