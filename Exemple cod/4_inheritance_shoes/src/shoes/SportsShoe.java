@@ -6,6 +6,7 @@ public class SportsShoe extends Shoe {
 	public String brandName;
 
 	public SportsShoe() {
+		super();
 		System.out.println("construct SportsShoe");
 	}
 	

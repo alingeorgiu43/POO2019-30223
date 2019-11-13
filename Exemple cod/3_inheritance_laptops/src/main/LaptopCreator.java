@@ -2,6 +2,7 @@ package main;
 
 import laptop.BusinessLaptop;
 import laptop.GamingLaptop;
+import laptop.GamingLaptop;
 import laptop.Laptop;
 
 public class LaptopCreator {
@@ -11,8 +12,8 @@ public class LaptopCreator {
 		BusinessLaptop businessLaptop = new BusinessLaptop();
 
 		gamingLaptop.bootUp();
-		//businessLaptop.bootUp();
-		((BusinessLaptop) gamingLaptop).test();
+		businessLaptop.bootUp();
+		((BusinessLaptop)gamingLaptop).bootUp();
 		
 	}
 
