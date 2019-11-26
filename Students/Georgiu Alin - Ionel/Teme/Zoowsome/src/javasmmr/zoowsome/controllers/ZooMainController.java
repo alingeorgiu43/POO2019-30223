@@ -1,9 +1,13 @@
 package javasmmr.zoowsome.controllers;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import javasmmr.zoowsome.models.animals.*;
 import javasmmr.zoowsome.models.employees.Caretaker;
+import javasmmr.zoowsome.models.employees.Employee;
+import javasmmr.zoowsome.repositories.AnimalRepository;
+import javasmmr.zoowsome.repositories.EmployeeRepository;
 import javasmmr.zoowsome.services.factories.*;
 
 public class ZooMainController {
@@ -53,14 +57,31 @@ public class ZooMainController {
 			caretakers[i] = (Caretaker) employeeFactory.getEmployeeFactory(Constants.EmployeeTypes.Caretaker);
 		}
 
-		caretakers[0].takeCareOf(mammals[0]);
-		caretakers[0].takeCareOf(mammals[2]);
-		for (int i = 0; i < 3; i++)
+		AnimalRepository AnimalRepository = new AnimalRepository();
+		ArrayList<Animal> animalsSave = new ArrayList<Animal>();
 
-			if (mammals[i].getIsTakenCareOf() == true)
-				System.out.println("The animal " + mammals[i].getName() + " had been taken care of");
-			else
-				System.out.println("The animal " + mammals[i].getName() + " had not been taken care of");
+		for (int i = 0; i < 3; i++) {
+			animalsSave.add(aquatics[i]);
+			animalsSave.add(birds[i]);
+			animalsSave.add(insects[i]);
+			// animalsSave.add(mammals[i]);
+			animalsSave.add(reptiles[i]);
+		}
+
+		AnimalRepository.save(animalsSave);
+		ArrayList<Animal> animalsLoad = new ArrayList<Animal>();
+		animalsLoad = AnimalRepository.load();
+
+		EmployeeRepository EmployeeRepository = new EmployeeRepository();
+		ArrayList<Employee> employeesSave = new ArrayList<Employee>();
+
+		for (int i = 0; i < 9; i++)
+			employeesSave.add(caretakers[i]);
+
+		EmployeeRepository.save(employeesSave);
+
+		ArrayList<Employee> employeesLoad = new ArrayList<Employee>();
+		employeesLoad = EmployeeRepository.load();
+
 	}
-	
 }
