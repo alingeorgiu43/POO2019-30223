@@ -5,7 +5,9 @@ public class CatchException {
 		try {
 			text.isAinText();
 		} catch (CapitalAException exception) {
-			System.out.print(exception.getMessage());
+			System.out.println(exception.getMessage());
+		} finally {
+			System.out.println("yeah, we got here ...");
 		}
 	}
 }
