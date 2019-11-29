@@ -1,11 +1,10 @@
-package javasmmr.chess.engine.board;
+package javaproj.chess.engine.board;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
-import javasmmr.chess.engine.pieces.Piece;
+import javaproj.chess.engine.pieces.Piece;
 
 public abstract class Square {
 	protected final int squareCoordinate;

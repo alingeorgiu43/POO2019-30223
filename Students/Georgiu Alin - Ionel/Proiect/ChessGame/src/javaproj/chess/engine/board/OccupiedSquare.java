@@ -1,6 +1,6 @@
-package javasmmr.chess.engine.board;
+package javaproj.chess.engine.board;
 
-import javasmmr.chess.engine.pieces.Piece;
+import javaproj.chess.engine.pieces.Piece;
 
 public final class OccupiedSquare extends Square {
 	private final Piece pieceOnSquare;

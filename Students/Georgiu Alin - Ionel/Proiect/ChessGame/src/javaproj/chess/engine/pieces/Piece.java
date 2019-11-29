@@ -1,9 +1,9 @@
-package javasmmr.chess.engine.pieces;
+package javaproj.chess.engine.pieces;
 
 import java.util.List;
 
-import javasmmr.chess.engine.board.Board;
-import javasmmr.chess.engine.board.Move;
+import javaproj.chess.engine.board.Board;
+import javaproj.chess.engine.board.Move;
 
 public abstract class Piece {
 	protected final int piecePosition;
