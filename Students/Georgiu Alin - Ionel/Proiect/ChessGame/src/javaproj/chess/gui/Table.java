@@ -18,8 +18,8 @@ public class Table {
 		this.gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		final JMenuBar bar = new JMenuBar();
 		populateMenuBar(bar);
-		this.gameFrame.setSize(FRAME_DIMENSION);
 		this.gameFrame.setJMenuBar(bar);
+		this.gameFrame.setSize(FRAME_DIMENSION);
 		this.gameFrame.setVisible(true);
 	}
 

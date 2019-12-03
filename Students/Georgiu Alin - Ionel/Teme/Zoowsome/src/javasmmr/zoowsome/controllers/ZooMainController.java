@@ -1,7 +1,6 @@
 package javasmmr.zoowsome.controllers;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import javasmmr.zoowsome.models.animals.*;
 import javasmmr.zoowsome.models.employees.Caretaker;
@@ -57,21 +56,6 @@ public class ZooMainController {
 			caretakers[i] = (Caretaker) employeeFactory.getEmployeeFactory(Constants.EmployeeTypes.Caretaker);
 		}
 
-		AnimalRepository AnimalRepository = new AnimalRepository();
-		ArrayList<Animal> animalsSave = new ArrayList<Animal>();
-
-		for (int i = 0; i < 3; i++) {
-			animalsSave.add(aquatics[i]);
-			animalsSave.add(birds[i]);
-			animalsSave.add(insects[i]);
-			// animalsSave.add(mammals[i]);
-			animalsSave.add(reptiles[i]);
-		}
-
-		AnimalRepository.save(animalsSave);
-		ArrayList<Animal> animalsLoad = new ArrayList<Animal>();
-		animalsLoad = AnimalRepository.load();
-
 		EmployeeRepository EmployeeRepository = new EmployeeRepository();
 		ArrayList<Employee> employeesSave = new ArrayList<Employee>();
 
@@ -82,6 +66,24 @@ public class ZooMainController {
 
 		ArrayList<Employee> employeesLoad = new ArrayList<Employee>();
 		employeesLoad = EmployeeRepository.load();
+
+		AnimalRepository AnimalRepository = new AnimalRepository();
+		ArrayList<Animal> animalsSave = new ArrayList<Animal>();
+
+		for (int i = 0; i < 3; i++) {
+			animalsSave.add(aquatics[i]);
+		}
+		for (int i = 0; i < 3; i++) {
+			animalsSave.add(mammals[i]);
+		}
+
+		for (int i = 0; i < 3; i++) {
+			animalsSave.add(birds[i]);
+		}
+
+		AnimalRepository.save(animalsSave);
+		ArrayList<Animal> animalsLoad = new ArrayList<Animal>();
+		animalsLoad = AnimalRepository.load();
 
 	}
 }
