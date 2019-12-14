@@ -40,15 +40,15 @@ public abstract class EntityRepository<T extends XML_Parsable> {
 
 	public void save(ArrayList<T> entities) throws FileNotFoundException, XMLStreamException {
 		XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-		// Create XMLEventWriter
+		
 		XMLEventWriter eventWriter = outputFactory.createXMLEventWriter(new FileOutputStream(this.xmlFilename));
-		// Create a EventF actory
+		
 		XMLEventFactory eventFactory = XMLEventFactory.newInstance();
 		XMLEvent end = eventFactory.createDTD("\n");
-		// Create and writ e Start Tag
+		
 		StartDocument startDocument = eventFactory.createStartDocument();
 		eventWriter.add(startDocument);
-		// Create content open tag
+		
 		StartElement configStartElement = eventFactory.createStartElement("", "", "content");
 		eventWriter.add(configStartElement);
 		eventWriter.add(end);
@@ -94,14 +94,14 @@ public abstract class EntityRepository<T extends XML_Parsable> {
 		XMLEventFactory eventFactory = XMLEventFactory.newInstance();
 		XMLEvent end = eventFactory.createDTD("\n");
 		XMLEvent tab = eventFactory.createDTD("\t");
-		// Create Start node
+		
 		StartElement sElement = eventFactory.createStartElement("", "", name);
 		eventWriter.add(tab);
 		eventWriter.add(sElement);
-		// Create Content
+		
 		Characters characters = eventFactory.createCharacters(value);
 		eventWriter.add(characters);
-		// Create End node
+		
 		EndElement eElement = eventFactory.createEndElement("", "", name);
 		eventWriter.add(eElement);
 		eventWriter.add(end);

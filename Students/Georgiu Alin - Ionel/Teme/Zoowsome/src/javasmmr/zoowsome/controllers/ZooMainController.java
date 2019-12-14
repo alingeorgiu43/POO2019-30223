@@ -39,13 +39,13 @@ public class ZooMainController {
 		aquatics[1] = (Aquatic) speciesFactoryAquatics.getAnimal(Constants.Animals.Aquatics.Shark);
 		aquatics[2] = (Aquatic) speciesFactoryAquatics.getAnimal(Constants.Animals.Aquatics.Dolphin);
 
-		reptiles[0] = (Reptile) speciesFactoryAquatics.getAnimal(Constants.Animals.Reptiles.Lizard);
-		reptiles[1] = (Reptile) speciesFactoryAquatics.getAnimal(Constants.Animals.Reptiles.Snake);
-		reptiles[2] = (Reptile) speciesFactoryAquatics.getAnimal(Constants.Animals.Reptiles.Turtle);
+		reptiles[0] = (Reptile) speciesFactoryReptiles.getAnimal(Constants.Animals.Reptiles.Lizard);
+		reptiles[1] = (Reptile) speciesFactoryReptiles.getAnimal(Constants.Animals.Reptiles.Snake);
+		reptiles[2] = (Reptile) speciesFactoryReptiles.getAnimal(Constants.Animals.Reptiles.Turtle);
 
-		insects[0] = (Insect) speciesFactoryAquatics.getAnimal(Constants.Animals.Insects.Bee);
-		insects[1] = (Insect) speciesFactoryAquatics.getAnimal(Constants.Animals.Insects.Butterfly);
-		insects[2] = (Insect) speciesFactoryAquatics.getAnimal(Constants.Animals.Insects.Spider);
+		insects[0] = (Insect) speciesFactoryInsects.getAnimal(Constants.Animals.Insects.Bee);
+		insects[1] = (Insect) speciesFactoryInsects.getAnimal(Constants.Animals.Insects.Butterfly);
+		insects[2] = (Insect) speciesFactoryInsects.getAnimal(Constants.Animals.Insects.Spider);
 
 		EmployeeFactory abstractEmployeeFactory = new EmployeeFactory();
 		EmployeeAbstractFactory employeeFactory = abstractEmployeeFactory
@@ -79,6 +79,14 @@ public class ZooMainController {
 
 		for (int i = 0; i < 3; i++) {
 			animalsSave.add(birds[i]);
+		}
+		
+		for (int i = 0; i < 3; i++) {
+			animalsSave.add(insects[i]);
+		}
+		
+		for (int i = 0; i < 3; i++) {
+			animalsSave.add(reptiles[i]);
 		}
 
 		AnimalRepository.save(animalsSave);

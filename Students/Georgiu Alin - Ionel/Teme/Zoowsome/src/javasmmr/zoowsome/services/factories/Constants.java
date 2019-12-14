@@ -2,6 +2,11 @@ package javasmmr.zoowsome.services.factories;
 
 public final class Constants {
 
+	public static final class FRAMES {
+		public static final int HEIGHT = 600;
+		public static final int WIDTH = 900;
+	}
+
 	public static final class Species {
 		public static final String Mammals = "Mammals";
 		public static final String Reptiles = "Reptiles";
