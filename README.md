@@ -56,4 +56,6 @@ http://ptgmedia.pearsoncmg.com/images/9780132350884/samplepages/9780132350884.pd
 
 [Chapter 8: Multithreading](Resources/Content/ch8-multithreading/README.md)
 
+[Chapter 9: Streams and Lambda Expressions]
+
 ##
