@@ -1,0 +1,69 @@
+package javaproj.chess.pieces;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import com.google.common.collect.ImmutableList;
+
+import javaproj.chess.board.Board;
+import javaproj.chess.board.BoardUtils;
+import javaproj.chess.board.Move;
+import javaproj.chess.board.Tile;
+
+public class Rook extends Piece {
+
+	private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -8, -1, 1, 8 };
+
+	Rook(int piecePosition, Alliance pieceAlliance) {
+		super(piecePosition, pieceAlliance);
+	}
+
+	@Override
+	public Collection<Move> calculateLegalMoves(Board board) {
+
+		final List<Move> legalMoves = new ArrayList<>();
+
+		for (final int candidateCoordinateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
+
+			int candidateDestinationCoordinate = this.piecePosition;
+
+			while (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+
+				if (isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)
+						|| isEightColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
+					break;
+				}
+
+				candidateDestinationCoordinate += candidateCoordinateOffset;
+
+				if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+
+					final Tile candidateDestionationTile = board.getTile(candidateDestinationCoordinate);
+					if (!candidateDestionationTile.isTileOccupied()) {
+						legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));
+					} else {
+						final Piece pieceAtDestination = candidateDestionationTile.getPiece();
+						final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
+						if (this.pieceAlliance != pieceAlliance) {
+							legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate,
+									pieceAtDestination));
+						}
+						break;
+					}
+				}
+			}
+
+		}
+		return ImmutableList.copyOf(legalMoves);
+	}
+
+	private static boolean isFirstColumnExclusion(int currentPosition, int candidateOffset) {
+		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -1);
+	}
+
+	private static boolean isEightColumnExclusion(int currentPosition, int candidateOffset) {
+		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == 1);
+	}
+
+}

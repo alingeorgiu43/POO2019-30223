@@ -16,7 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import javaproj.chess.engine.board.BoardUtils;
+import javaproj.chess.board.BoardUtils;
 
 public class Table {
 	private final JFrame gameFrame;
@@ -24,9 +24,9 @@ public class Table {
 	private final static Dimension FRAME_DIMENSION = new Dimension(600, 600);
 	private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
 	private final static Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
-	
-	private final static Color lightTileColor=Color.YELLOW;
-	private final static Color darkTileColor=Color.LIGHT_GRAY;
+
+	private final static Color lightTileColor = Color.WHITE;
+	private final static Color darkTileColor = Color.LIGHT_GRAY;
 
 	public Table() {
 		this.gameFrame = new JFrame("Chess Game");
