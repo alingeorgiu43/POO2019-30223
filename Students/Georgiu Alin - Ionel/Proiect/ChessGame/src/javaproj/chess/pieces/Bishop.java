@@ -2,6 +2,7 @@ package javaproj.chess.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -15,7 +16,7 @@ public class Bishop extends Piece {
 
 	private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -8, -7, -1, 1, 7, 8, 9 };
 
-	Bishop(int piecePosition, Alliance pieceAlliance) {
+	public Bishop(int piecePosition, Alliance pieceAlliance) {
 		super(piecePosition, pieceAlliance);
 	}
 
@@ -55,7 +56,8 @@ public class Bishop extends Piece {
 			}
 
 		}
-		return ImmutableList.copyOf(legalMoves);
+		//return ImmutableList.copyOf(legalMoves);
+		 return Collections.unmodifiableList(legalMoves);
 	}
 
 	private static boolean isFirstColumnExclusion(int currentPosition, int candidateOffset) {
@@ -64,6 +66,11 @@ public class Bishop extends Piece {
 
 	private static boolean isEightColumnExclusion(int currentPosition, int candidateOffset) {
 		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -7 || candidateOffset == 9);
+	}
+	
+	@Override
+	public String toString() {
+		return 	PieceType.BISHOP.toString();
 	}
 
 }

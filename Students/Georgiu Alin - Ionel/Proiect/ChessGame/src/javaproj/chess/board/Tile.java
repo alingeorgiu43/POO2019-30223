@@ -19,8 +19,8 @@ public abstract class Tile {
 		for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
 			emptyTileMap.put(i, new EmptyTile(i));
 		}
-		//return Collections.unmodifiableMap(emptyTileMap);
-		return ImmutableMap.copyOf(emptyTileMap);
+		return Collections.unmodifiableMap(emptyTileMap);
+		// return ImmutableMap.copyOf(emptyTileMap);
 	}
 
 	public static Tile createTile(int tileCoordinate, final Piece piece) {
@@ -45,6 +45,11 @@ public abstract class Tile {
 		}
 
 		@Override
+		public String toString() {
+			return "-";
+		}
+
+		@Override
 		public boolean isTileOccupied() {
 			return false;
 		}
@@ -59,9 +64,18 @@ public abstract class Tile {
 
 		private final Piece pieceOnTile;
 
-		private OccupiedTile(int tileCoordinate,final Piece pieceOnTile) {
+		private OccupiedTile(int tileCoordinate, final Piece pieceOnTile) {
 			super(tileCoordinate);
 			this.pieceOnTile = pieceOnTile;
+		}
+
+		@Override
+		public String toString() {
+
+			if (getPiece().getPieceAlliance().isBlack())
+				return getPiece().toString().toLowerCase();
+			else
+				return getPiece().toString();
 		}
 
 		@Override

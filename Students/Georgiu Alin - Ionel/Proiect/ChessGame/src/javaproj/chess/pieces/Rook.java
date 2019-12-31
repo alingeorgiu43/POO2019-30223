@@ -2,6 +2,7 @@ package javaproj.chess.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -10,12 +11,13 @@ import javaproj.chess.board.Board;
 import javaproj.chess.board.BoardUtils;
 import javaproj.chess.board.Move;
 import javaproj.chess.board.Tile;
+import javaproj.chess.pieces.Piece.PieceType;
 
 public class Rook extends Piece {
 
 	private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -8, -1, 1, 8 };
 
-	Rook(int piecePosition, Alliance pieceAlliance) {
+	public Rook(int piecePosition, Alliance pieceAlliance) {
 		super(piecePosition, pieceAlliance);
 	}
 
@@ -55,7 +57,8 @@ public class Rook extends Piece {
 			}
 
 		}
-		return ImmutableList.copyOf(legalMoves);
+		//return ImmutableList.copyOf(legalMoves);
+		 return Collections.unmodifiableList(legalMoves);
 	}
 
 	private static boolean isFirstColumnExclusion(int currentPosition, int candidateOffset) {
@@ -66,4 +69,8 @@ public class Rook extends Piece {
 		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == 1);
 	}
 
+	@Override
+	public String toString() {
+		return 	PieceType.ROOK.toString();
+	}
 }

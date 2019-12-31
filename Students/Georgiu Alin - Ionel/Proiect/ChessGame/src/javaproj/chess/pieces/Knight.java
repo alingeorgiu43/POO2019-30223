@@ -2,6 +2,7 @@ package javaproj.chess.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -9,15 +10,15 @@ import com.google.common.collect.ImmutableList;
 import javaproj.chess.board.Board;
 import javaproj.chess.board.Move;
 import javaproj.chess.board.Tile;
+import javaproj.chess.pieces.Piece.PieceType;
 import javaproj.chess.board.BoardUtils;
 
 public class Knight extends Piece {
 
 	private final static int[] CANDIDATE_MOVE_COORDINATES = { -17, -15, -10, -6, 6, 10, 15, 17 };
 
-	Knight(final int piecePosition, final Alliance pieceAlliance) {
+	public Knight(final int piecePosition, final Alliance pieceAlliance) {
 		super(piecePosition, pieceAlliance);
-
 	}
 
 	@Override
@@ -50,7 +51,8 @@ public class Knight extends Piece {
 				}
 			}
 		}
-		return ImmutableList.copyOf(legalMoves);
+		//return ImmutableList.copyOf(legalMoves);
+		 return Collections.unmodifiableList(legalMoves);
 	}
 
 	private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
@@ -74,5 +76,10 @@ public class Knight extends Piece {
 
 		return BoardUtils.EIGHTH_COLUMN[currentPosition] && ((candidateOffset == -15) || (candidateOffset == -6)
 				|| (candidateOffset == 17) || (candidateOffset == 10));
+	}
+	
+	@Override
+	public String toString() {
+		return 	PieceType.KNIGHT.toString();
 	}
 }

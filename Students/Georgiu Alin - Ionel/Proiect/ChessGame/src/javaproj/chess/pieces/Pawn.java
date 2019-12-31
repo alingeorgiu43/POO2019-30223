@@ -2,6 +2,7 @@ package javaproj.chess.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -9,12 +10,13 @@ import com.google.common.collect.ImmutableList;
 import javaproj.chess.board.Board;
 import javaproj.chess.board.BoardUtils;
 import javaproj.chess.board.Move;
+import javaproj.chess.pieces.Piece.PieceType;
 
 public class Pawn extends Piece {
 
 	private final static int[] CANDIDATE_MOVE_COORDINATE = { 8, 16, 7, 9 };
 
-	Pawn(int piecePosition, Alliance pieceAlliance) {
+	public Pawn(int piecePosition, Alliance pieceAlliance) {
 		super(piecePosition, pieceAlliance);
 	}
 
@@ -68,7 +70,13 @@ public class Pawn extends Piece {
 				}
 			}
 		}
-		return ImmutableList.copyOf(legalMoves);
+		//return ImmutableList.copyOf(legalMoves);
+		 return Collections.unmodifiableList(legalMoves);
+	}
+	
+	@Override
+	public String toString() {
+		return 	PieceType.PAWN.toString();
 	}
 
 }
