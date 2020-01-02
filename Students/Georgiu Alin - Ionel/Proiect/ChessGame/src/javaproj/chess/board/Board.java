@@ -12,12 +12,18 @@ import java.util.Map;
 import com.google.common.collect.ImmutableList;
 
 import javaproj.chess.pieces.*;
+import javaproj.chess.player.BlackPlayer;
+import javaproj.chess.player.Player;
+import javaproj.chess.player.WhitePLayer;
 
 public class Board {
 
 	private List<Tile> gameBoard;
 	private final Collection<Piece> whitePieces;
 	private final Collection<Piece> blackPieces;
+	private final WhitePLayer whitePlayer;
+	private final BlackPlayer blackPlayer;
+	private final Player currentPlayer;
 
 	public Board(Builder builder) {
 		this.gameBoard = createGameBoard(builder);
@@ -25,6 +31,9 @@ public class Board {
 		this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
 		final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
 		final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
+		this.whitePlayer = new WhitePLayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+		this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+		this.currentPlayer = null;
 	}
 
 	private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
@@ -34,8 +43,8 @@ public class Board {
 			legalMoves.addAll(piece.calculateLegalMoves(this));
 		}
 
-		//return ImmutableList.copyOf(legalMoves);
-		 return Collections.unmodifiableList(legalMoves);
+		// return ImmutableList.copyOf(legalMoves);
+		return Collections.unmodifiableList(legalMoves);
 	}
 
 	private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard, final Alliance alliance) {
@@ -49,8 +58,16 @@ public class Board {
 				}
 			}
 		}
-		//return ImmutableList.copyOf(activePieces);
+		// return ImmutableList.copyOf(activePieces);
 		return Collections.unmodifiableList(activePieces);
+	}
+
+	public Collection<Piece> getBlackPieces() {
+		return this.blackPieces;
+	}
+
+	public Collection<Piece> getWhitePieces() {
+		return this.whitePieces;
 	}
 
 	private static List<Tile> createGameBoard(Builder builder) {
@@ -66,6 +83,18 @@ public class Board {
 
 	public Tile getTile(final int tileCoordinate) {
 		return gameBoard.get(tileCoordinate);
+	}
+
+	public Player whitePlayer() {
+		return this.whitePlayer;
+	}
+
+	public Player currentPlayer() {
+		return this.currentPlayer;
+	}
+
+	public Player blackPlayer() {
+		return this.blackPlayer;
 	}
 
 	public static Board createStandardBoard() {

@@ -20,6 +20,12 @@ public abstract class Move {
 			super(board, movedPiece, destinationCoordinate);
 		}
 
+		@Override
+		public Board execute() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 	}
 
 	public static final class AttackMove extends Move {
@@ -29,6 +35,17 @@ public abstract class Move {
 			super(board, movedPiece, destinationCoordinate);
 			 this.attackedPiece = attackedPiece;
 		}
+		@Override
+		public Board execute() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 	}
+
+	public int getDestinationCoordinate() {
+		return this.destinationCoordinate;
+	}
+
+	public abstract Board execute();
 }
