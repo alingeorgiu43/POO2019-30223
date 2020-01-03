@@ -73,4 +73,10 @@ public class Rook extends Piece {
 	public String toString() {
 		return 	PieceType.ROOK.toString();
 	}
+	
+	@Override
+	public Rook movePiece(Move move) {
+
+		return new Rook(move.getDestinationCoordinate(),move.getMovedPiece().getPieceAlliance());
+	}
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 
 import javaproj.chess.pieces.*;
 import javaproj.chess.player.BlackPlayer;
@@ -33,7 +34,7 @@ public class Board {
 		final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
 		this.whitePlayer = new WhitePLayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
 		this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
-		this.currentPlayer = null;
+		this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
 	}
 
 	private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
@@ -143,6 +144,7 @@ public class Board {
 
 		Map<Integer, Piece> boardConfig;
 		Alliance nextMoveMaker;
+		Pawn enPassantPawn;
 
 		public Builder() {
 			this.boardConfig = new HashMap<>();
@@ -163,6 +165,11 @@ public class Board {
 			return new Board(this);
 		}
 
+		public void setEnPassantPawn(Pawn EnPassantPawn) {
+
+			this.enPassantPawn=enPassantPawn;
+		}
+
 	}
 
 	@Override
@@ -177,6 +184,11 @@ public class Board {
 		}
 		return builder.toString();
 
+	}
+
+	public Iterable<Move> getAllLegalMoves() {
+		return Iterables.unmodifiableIterable(
+				Iterables.concat(this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves()));
 	}
 
 }
