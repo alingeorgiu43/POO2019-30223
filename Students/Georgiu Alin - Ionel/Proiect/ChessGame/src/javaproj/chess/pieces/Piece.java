@@ -117,7 +117,7 @@ public abstract class Piece {
 		QUEEN("Q") {
 			@Override
 			public boolean isKing() {
-				return true;
+				return false;
 			}
 			@Override
 			public boolean isRook() {
@@ -127,7 +127,7 @@ public abstract class Piece {
 		KING("K") {
 			@Override
 			public boolean isKing() {
-				return false;
+				return true;
 			}
 			@Override
 			public boolean isRook() {

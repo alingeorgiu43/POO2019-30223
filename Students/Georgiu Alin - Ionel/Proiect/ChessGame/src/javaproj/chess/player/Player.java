@@ -1,6 +1,7 @@
 package javaproj.chess.player;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -24,9 +25,7 @@ public abstract class Player {
 	Player(final Board board, final Collection<Move> legalMoves, final Collection<Move> opponentMoves) {
 		this.board = board;
 		this.playerKing = establishKing();
-		this.legalMoves = Collections
-				.unmodifiableList((List) Iterables.concat(legalMoves, calculateKingCastles(legalMoves, opponentMoves)));
-		//this.legalMoves = Immutable.copyOf(Iterables.concat(legalMoves, calculateKingCastles(legalMoves, opponentMoves)));
+		this.legalMoves = Collections.unmodifiableCollection(legalMoves);
 		this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
 	}
 
