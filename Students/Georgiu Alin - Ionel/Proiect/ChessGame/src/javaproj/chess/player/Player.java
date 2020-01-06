@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+
 import com.google.common.collect.Iterables;
 
 import javaproj.chess.board.Board;
@@ -18,15 +20,15 @@ import javaproj.chess.pieces.Piece;
 public abstract class Player {
 
 	protected final Board board;
-	protected final King playerKing;
+	protected King playerKing;
 	protected final Collection<Move> legalMoves;
 	private final boolean isInCheck;
 
 	Player(final Board board, final Collection<Move> legalMoves, final Collection<Move> opponentMoves) {
 		this.board = board;
 		this.playerKing = establishKing();
-		this.legalMoves = Collections.unmodifiableCollection(legalMoves);
 		this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
+		this.legalMoves = Collections.unmodifiableCollection(legalMoves);
 	}
 
 	protected static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
@@ -39,19 +41,23 @@ public abstract class Player {
 		}
 		return Collections.unmodifiableList(attackMoves);
 	}
+	
+	public boolean isMoveLegal(final Move move) {
+		return this.legalMoves.contains(move);
+	}
+	
 
 	private King establishKing() {
-
+		King piece=new King(4, Alliance.WHITE);
+		return piece;
+/*
 		for (final Piece piece : getActivePieces()) {
 			if (piece.getPieceType().isKing()) {
 				return (King) piece;
 			}
 		}
 		throw new RuntimeException("This is not an allowed chess table");
-	}
-
-	public boolean isMoveLegal(final Move move) {
-		return this.legalMoves.contains(move);
+		*/
 	}
 
 	public boolean isInCheck() {
@@ -60,6 +66,10 @@ public abstract class Player {
 
 	public boolean isInCheckMate() {
 		return this.isInCheck && !hasEscapeMoves();
+	}
+	
+	public boolean isInStaleMate() {
+		return !this.isInCheck && !hasEscapeMoves();
 	}
 
 	private boolean hasEscapeMoves() {
@@ -71,14 +81,6 @@ public abstract class Player {
 			} else
 				return false;
 		}
-		return false;
-	}
-
-	public boolean isInStaleMate() {
-		return !this.isInCheck && !hasEscapeMoves();
-	}
-
-	public boolean isCastled() {
 		return false;
 	}
 
@@ -111,8 +113,4 @@ public abstract class Player {
 	public abstract Alliance getAlliance();
 
 	public abstract Player getOpponent();
-
-	protected abstract Collection<Move> calculateKingCastles(Collection<Move> playerLegals,
-			Collection<Move> opponentLegals);
-
 }

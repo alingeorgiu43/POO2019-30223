@@ -10,8 +10,7 @@ import com.google.common.collect.ImmutableMap;
 import javaproj.chess.pieces.Piece;
 
 public abstract class Tile {
-	protected final int tileCoordinate;
-
+	protected final int titleId;
 	private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 
 	private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
@@ -20,7 +19,6 @@ public abstract class Tile {
 			emptyTileMap.put(i, new EmptyTile(i));
 		}
 		return Collections.unmodifiableMap(emptyTileMap);
-		// return ImmutableMap.copyOf(emptyTileMap);
 	}
 
 	public static Tile createTile(int tileCoordinate, final Piece piece) {
@@ -31,8 +29,12 @@ public abstract class Tile {
 		}
 	}
 
+	public int getTileCoordinate() {
+		return this.titleId;
+	}
+
 	private Tile(final int tileCoordinate) {
-		this.tileCoordinate = tileCoordinate;
+		this.titleId = tileCoordinate;
 	}
 
 	public abstract boolean isTileOccupied();
@@ -88,9 +90,5 @@ public abstract class Tile {
 			return this.pieceOnTile;
 		}
 
-	}
-
-	public int getTileCoordinate() {
-		return this.tileCoordinate;
 	}
 }

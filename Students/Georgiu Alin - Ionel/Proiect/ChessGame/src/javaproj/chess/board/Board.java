@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -18,7 +20,6 @@ import javaproj.chess.player.Player;
 import javaproj.chess.player.WhitePLayer;
 
 public class Board {
-
 	private List<Tile> gameBoard;
 	private final Collection<Piece> whitePieces;
 	private final Collection<Piece> blackPieces;
@@ -38,18 +39,14 @@ public class Board {
 	}
 
 	private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
-
 		List<Move> legalMoves = new ArrayList<>();
 		for (Piece piece : pieces) {
 			legalMoves.addAll(piece.calculateLegalMoves(this));
 		}
-
-		// return ImmutableList.copyOf(legalMoves);
 		return Collections.unmodifiableList(legalMoves);
 	}
 
 	private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard, final Alliance alliance) {
-
 		List<Piece> activePieces = new ArrayList<>();
 		for (final Tile tile : gameBoard) {
 			if (tile.isTileOccupied()) {
@@ -59,7 +56,6 @@ public class Board {
 				}
 			}
 		}
-		// return ImmutableList.copyOf(activePieces);
 		return Collections.unmodifiableList(activePieces);
 	}
 
@@ -72,11 +68,8 @@ public class Board {
 	}
 
 	private static List<Tile> createGameBoard(Builder builder) {
-
-		// Tile[] tiles = new Tile[BoardUtils.NUM_TILES];
-		List<Tile> tiles = new ArrayList<>();
+		List<Tile> tiles = new ArrayList<Tile>();
 		for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
-
 			tiles.add(Tile.createTile(i, builder.boardConfig.get(i)));
 		}
 		return Collections.unmodifiableList(tiles);
@@ -100,7 +93,7 @@ public class Board {
 
 	public static Board createStandardBoard() {
 		final Builder builder = new Builder();
-		// BlackLayout
+
 		builder.setPiece(new Rook(0, Alliance.BLACK));
 		builder.setPiece(new Knight(1, Alliance.BLACK));
 		builder.setPiece(new Bishop(2, Alliance.BLACK));
@@ -117,7 +110,7 @@ public class Board {
 		builder.setPiece(new Pawn(13, Alliance.BLACK));
 		builder.setPiece(new Pawn(14, Alliance.BLACK));
 		builder.setPiece(new Pawn(15, Alliance.BLACK));
-		// WhiteLayout
+
 		builder.setPiece(new Pawn(48, Alliance.WHITE));
 		builder.setPiece(new Pawn(49, Alliance.WHITE));
 		builder.setPiece(new Pawn(50, Alliance.WHITE));
@@ -141,7 +134,6 @@ public class Board {
 	}
 
 	public static class Builder {
-
 		Map<Integer, Piece> boardConfig;
 		Alliance nextMoveMaker;
 		Pawn enPassantPawn;
@@ -167,7 +159,7 @@ public class Board {
 
 		public void setEnPassantPawn(Pawn EnPassantPawn) {
 
-			this.enPassantPawn=enPassantPawn;
+			this.enPassantPawn = enPassantPawn;
 		}
 
 	}
@@ -186,9 +178,10 @@ public class Board {
 
 	}
 
-	public Iterable<Move> getAllLegalMoves() {
-		return Iterables.unmodifiableIterable(
-				Iterables.concat(this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves()));
+	public Collection<Move> getAllLegalMoves() {
+		Stream<Move> combinedStream = Stream.of(this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves())
+				.flatMap(Collection::stream);
+		Collection<Move> collectionCombined = combinedStream.collect(Collectors.toList());
+		return collectionCombined;
 	}
-
 }

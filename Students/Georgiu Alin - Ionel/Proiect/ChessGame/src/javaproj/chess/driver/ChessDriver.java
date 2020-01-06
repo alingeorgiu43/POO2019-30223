@@ -1,3 +1,6 @@
+
+package javaproj.chess.driver;
+
 import javaproj.chess.board.Board;
 import javaproj.chess.gui.Table;
 
