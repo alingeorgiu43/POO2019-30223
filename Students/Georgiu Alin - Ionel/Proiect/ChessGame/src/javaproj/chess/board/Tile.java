@@ -2,13 +2,22 @@
 package javaproj.chess.board;
 
 import java.util.Collections;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
-
 import javaproj.chess.pieces.Piece;
 
+
+/**
+ * 
+ * @author Alin
+ * Clasa Tile este clasa pe care am definit-o pentru a reprezenta un patrat al tablei 
+ * In aceasta clasa se stabileste daca o anumita locatie este sau nu ocuapta (isTileOccupied),
+ * ce piesa se afla pe un patrat al tablei(getPiece),
+ * care sunt locatiile libere unde se pot efectua mutari (createAllPossibleEmptyTiles)
+ *
+ */
 public abstract class Tile {
 	protected final int titleId;
 	private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
@@ -38,7 +47,6 @@ public abstract class Tile {
 	}
 
 	public abstract boolean isTileOccupied();
-
 	public abstract Piece getPiece();
 
 	public static final class EmptyTile extends Tile {
@@ -89,6 +97,5 @@ public abstract class Tile {
 		public Piece getPiece() {
 			return this.pieceOnTile;
 		}
-
 	}
 }

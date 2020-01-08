@@ -1,16 +1,13 @@
-
-package javaproj.chess.driver;
+package javaproj.chess.controller;
 
 import javaproj.chess.board.Board;
 import javaproj.chess.gui.Table;
 
-public class ChessDriver {
+public class ChessMainController {
 
 	public static void main(String[] args) {
-
-		Table table = new Table();
-		
-		Board board=Board.createStandardBoard();
+		Table.get().show();
+		Board board = Board.createStandardBoard();
 		System.out.println(board);
 	}
 }

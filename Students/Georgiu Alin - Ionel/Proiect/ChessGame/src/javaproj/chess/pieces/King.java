@@ -1,17 +1,26 @@
 package javaproj.chess.pieces;
 
 import java.util.ArrayList;
+
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import com.google.common.collect.ImmutableList;
 
 import javaproj.chess.board.Board;
 import javaproj.chess.board.BoardUtils;
 import javaproj.chess.board.Move;
 import javaproj.chess.board.Tile;
-import javaproj.chess.pieces.Piece.PieceType;
+
+/**
+* 
+* @author Alin
+* King mosteneste din clasa Piece 
+* Implementeaza metoda calculateLegalMoves pentru a calcula toate posibilele mutari pe care piesa le poate face si o alege pe cea mai buna 
+* La mutarea piesei se va contrui un nou King, iar cel anterior va fi sters
+* isCastled stabileste daca regele a executat miscarea unica Castling sau nu 
+*
+*/
 
 public class King extends Piece{
 

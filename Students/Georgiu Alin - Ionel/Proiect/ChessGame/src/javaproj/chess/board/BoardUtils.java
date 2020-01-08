@@ -1,5 +1,13 @@
 package javaproj.chess.board;
 
+/**
+ * 
+ * @author Alin
+ *	BoardUtils este o clasa de constante care ajuta la crearea unui cod mai curat, 
+ *	dar si pentru a afla pe ce coloana sau rand este o anumita piesa atunci cand dorim sa facem o mutare a acesteia
+ *	si a stabili daca aceea mutare este posibila(vezi clasele in care sunt descrise piesele)
+ *
+ */
 public class BoardUtils {
 
 	public static final boolean[] FIRST_COLUMN = initColumn(0);

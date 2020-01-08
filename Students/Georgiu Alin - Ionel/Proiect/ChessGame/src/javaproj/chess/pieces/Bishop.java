@@ -1,16 +1,25 @@
 package javaproj.chess.pieces;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import com.google.common.collect.ImmutableList;
 
 import javaproj.chess.board.Board;
 import javaproj.chess.board.BoardUtils;
 import javaproj.chess.board.Move;
 import javaproj.chess.board.Tile;
+
+/**
+ * 
+ * @author Alin
+ * Bishop mosteneste din clasa Piece 
+ * Implementeaza metoda calculateLegalMoves pentru a calcula toate posibilele mutari pe care piesa le poate face si o alege pe cea mai buna 
+ * La mutarea piesei se va contrui un nou Bishop, iar cel anterior va fi sters
+ * CANDIDATE_MOVE_VECTOR_COORDINATES: au fost calculate parcurgand matricea la stanga numarand pasii daca numarul e negativ si la dreapta daca nuamrul e pozitiv
+ *
+ */
 
 public class Bishop extends Piece {
 	private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -7, 7, 9 };

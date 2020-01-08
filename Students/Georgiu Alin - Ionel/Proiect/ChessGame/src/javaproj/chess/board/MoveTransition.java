@@ -1,7 +1,6 @@
-package javaproj.chess.player;
+package javaproj.chess.board;
 
-import javaproj.chess.board.Board;
-import javaproj.chess.board.Move;
+import javaproj.chess.player.MoveStatus;
 
 public class MoveTransition {
 
@@ -16,11 +15,13 @@ public class MoveTransition {
 	}
 
 	public MoveStatus getMoveStatus() {
-
 		return this.moveStatus;
 	}
 	
 	public Board getTransitionBoard() {
 		return this.transitionBoard; 
 	}
+	 public Board getToBoard() {
+         return this.transitionBoard;
+    }
 }

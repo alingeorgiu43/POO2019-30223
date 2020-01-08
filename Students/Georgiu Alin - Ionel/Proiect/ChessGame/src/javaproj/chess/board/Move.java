@@ -1,10 +1,17 @@
 package javaproj.chess.board;
 
 import javaproj.chess.board.Board.Builder;
-import javaproj.chess.pieces.Pawn;
 import javaproj.chess.pieces.Piece;
-import javaproj.chess.pieces.Rook;
 
+/** 
+ * 
+ * @author Alin
+ *	In clasa Move se executa mutari ale pieselor pe tabla
+ *	Exista doua mari tipuri de mutari implementate in doua clase separate care mostenesc din clasa principala Move:
+ * 	1. Mutare pe o locatie goala (MajorMove)
+ * 	2. Mutare pe o locatie ocupata de o piesa a oponentului (AttackMove)
+ *
+ */
 public abstract class Move {
 	final Board board;
 	final Piece movedPiece;
@@ -72,7 +79,6 @@ public abstract class Move {
 			AttackMove otherAttackMove = (AttackMove) other;
 			return super.equals(otherAttackMove) && getAttackedPiece().equals(otherAttackMove.getAttackedPiece());
 		}
-
 	}
 
 	public static class PawnMove extends Move {
@@ -87,7 +93,6 @@ public abstract class Move {
 		public PawnAttackMove(Board board, Piece movedPiece, int destinationCoordinate, Piece attackedPiece) {
 			super(board, movedPiece, destinationCoordinate, attackedPiece);
 		}
-
 	}
 
 	public static class PawnEnPassantAttackMove extends PawnAttackMove {
@@ -107,7 +112,6 @@ public abstract class Move {
 		public Board execute() {
 			throw new RuntimeException("You cannot do a nullMove");
 		}
-
 	}
 
 	public int getCurrentCoordinate() {
@@ -140,8 +144,8 @@ public abstract class Move {
 		}
 		final Move otherMove = (Move) other;
 		return getCurrentCoordinate() == otherMove.getCurrentCoordinate()
-				&& getDestinationCoordinate() == otherMove.getDestinationCoordinate()
-				&& getMovedPiece().equals(otherMove.getMovedPiece());
+			&& getDestinationCoordinate() == otherMove.getDestinationCoordinate()
+			&& getMovedPiece().equals(otherMove.getMovedPiece());
 	}
 
 	public int getDestinationCoordinate() {
@@ -155,7 +159,7 @@ public abstract class Move {
 	public boolean isAttack() {
 		return false;
 	}
-
+	
 	public Piece getAttackedPiece() {
 		return null;
 	}

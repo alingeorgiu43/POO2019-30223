@@ -2,21 +2,26 @@ package javaproj.chess.player;
 
 import java.util.ArrayList;
 
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-
-import com.google.common.collect.Iterables;
-
 import javaproj.chess.board.Board;
 import javaproj.chess.board.Move;
+import javaproj.chess.board.MoveTransition;
 import javaproj.chess.pieces.Alliance;
 import javaproj.chess.pieces.King;
 import javaproj.chess.pieces.Piece;
-
+/**
+ * 
+ * @author Alin
+ *  Clasa Player contine tabla de sah, mutarile legale pe care le poate face jucatorul,
+ *  regele acelui jucator si daca regele este sau nu un check
+ *  Metoda establishKing() parcurge toate piesele active si daca gaseste regele il returneaza 
+ *  
+ *
+ */
 public abstract class Player {
 
 	protected final Board board;
@@ -32,7 +37,6 @@ public abstract class Player {
 	}
 
 	protected static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
-
 		List<Move> attackMoves = new ArrayList<>();
 		for (Move move : moves) {
 			if (piecePosition == move.getDestinationCoordinate()) {
@@ -45,7 +49,6 @@ public abstract class Player {
 	public boolean isMoveLegal(final Move move) {
 		return this.legalMoves.contains(move);
 	}
-	
 
 	private King establishKing() {
 		King piece=new King(4, Alliance.WHITE);
@@ -107,10 +110,7 @@ public abstract class Player {
 	public King getPlayerKing() {
 		return this.playerKing;
 	}
-
 	public abstract Collection<Piece> getActivePieces();
-
 	public abstract Alliance getAlliance();
-
 	public abstract Player getOpponent();
 }

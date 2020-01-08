@@ -1,6 +1,7 @@
 package javaproj.chess.gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -27,20 +28,18 @@ import javax.swing.JPanel;
 import javaproj.chess.board.Board;
 import javaproj.chess.board.BoardUtils;
 import javaproj.chess.board.Move;
-import javaproj.chess.board.Tile;
+import javaproj.chess.board.MoveTransition;
+import javaproj.chess.board.Move.MoveFactory;
 import javaproj.chess.pieces.Piece;
-import javaproj.chess.player.MoveTransition;
-import javax.swing.SwingUtilities;
 
-import com.google.common.collect.Lists;
+import javax.swing.SwingUtilities;
 
 public final class Table {
 	private final JFrame gameFrame;
 	private final BoardPanel boardPanel;
 	private Board chessBoard;
 
-	private Tile sourceTile;
-	private Tile destinationTile;
+	private Piece sourceTile;
 	private Piece humanMovedPiece;
 
 	private final MoveLog moveLog;
@@ -52,6 +51,8 @@ public final class Table {
 
 	private final static Color lightTileColor = Color.WHITE;
 	private final static Color darkTileColor = Color.LIGHT_GRAY;
+
+	private static final Table brandNewTable = new Table();
 
 	public Table() {
 		this.gameFrame = new JFrame("Chess Game");
@@ -65,6 +66,27 @@ public final class Table {
 		this.boardPanel = new BoardPanel();
 		this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
 		this.gameFrame.setVisible(true);
+	}
+
+	public static Table get() {
+		return brandNewTable;
+	}
+
+	private Board getGameBoard() {
+		return this.chessBoard;
+	}
+
+	private BoardPanel getBoardPanel() {
+		return this.boardPanel;
+	}
+
+	public void show() {
+		Table.get().getMoveLog().clear();
+		Table.get().getBoardPanel().drawBoard(Table.get().getGameBoard());
+	}
+
+	private MoveLog getMoveLog() {
+		return this.moveLog;
 	}
 
 	private JMenuBar createTableMenuBar() {
@@ -118,9 +140,11 @@ public final class Table {
 		boolean removeMove(final Move move) {
 			return this.moves.remove(move);
 		}
+
 	}
 
 	private class BoardPanel extends JPanel {
+		private static final long serialVersionUID = 1L;
 		final List<TilePanel> boardTiles;
 
 		BoardPanel() {
@@ -147,8 +171,8 @@ public final class Table {
 		}
 	}
 
-
 	private class TilePanel extends JPanel {
+		private static final long serialVersionUID = 1L;
 		private final int titleId;
 
 		TilePanel(final BoardPanel boardPanel, final int titleId) {
@@ -159,71 +183,53 @@ public final class Table {
 			assignTilePieceIcon(chessBoard);
 
 			addMouseListener(new MouseListener() {
-
 				@Override
-				public void mouseClicked(MouseEvent e) {
-
-					if (SwingUtilities.isRightMouseButton(e)) {
+				public void mouseClicked(final MouseEvent event) {
+					if (SwingUtilities.isRightMouseButton(event)) {
 						sourceTile = null;
-						destinationTile = null;
 						humanMovedPiece = null;
-
-					} else if (SwingUtilities.isLeftMouseButton(e)) {
+					} else if (SwingUtilities.isLeftMouseButton(event)) {
 						if (sourceTile == null) {
-							sourceTile = chessBoard.getTile(titleId);
-							humanMovedPiece = sourceTile.getPiece();
+							sourceTile = chessBoard.getTile(titleId).getPiece();
+							humanMovedPiece = sourceTile;
 							if (humanMovedPiece == null) {
 								sourceTile = null;
 							}
 						} else {
-							destinationTile = chessBoard.getTile(titleId);
-							Move move = Move.MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(),
-									destinationTile.getTileCoordinate());
-							MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
+							final Move move = MoveFactory.createMove(chessBoard, sourceTile.getPiecePosition(),
+									titleId);
+							final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
 							if (transition.getMoveStatus().isDone()) {
-								chessBoard = transition.getTransitionBoard();
+								chessBoard = transition.getToBoard();
 								moveLog.addMove(move);
 							}
 							sourceTile = null;
-							destinationTile = null;
 							humanMovedPiece = null;
-
 						}
-						SwingUtilities.invokeLater(new Runnable() {
-
-							@Override
-							public void run() {
-
-								boardPanel.drawBoard(chessBoard);
-							}
-
-						});
-
 					}
+					SwingUtilities.invokeLater(new Runnable() {
+						public void run() {
+							boardPanel.drawBoard(chessBoard);
+						}
+					});
 				}
 
 				@Override
-				public void mousePressed(MouseEvent e) {
-
+				public void mouseExited(final MouseEvent e) {
 				}
 
 				@Override
-				public void mouseReleased(MouseEvent e) {
-
+				public void mouseEntered(final MouseEvent e) {
 				}
 
 				@Override
-				public void mouseEntered(MouseEvent e) {
-
+				public void mouseReleased(final MouseEvent e) {
 				}
 
 				@Override
-				public void mouseExited(MouseEvent e) {
-
+				public void mousePressed(final MouseEvent e) {
 				}
-
 			});
-
 			validate();
 		}
 

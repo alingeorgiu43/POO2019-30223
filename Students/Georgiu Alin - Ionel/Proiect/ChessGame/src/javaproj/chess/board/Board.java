@@ -1,7 +1,5 @@
 package javaproj.chess.board;
 
-import java.util.*;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,13 +9,27 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
-
 import javaproj.chess.pieces.*;
 import javaproj.chess.player.BlackPlayer;
 import javaproj.chess.player.Player;
 import javaproj.chess.player.WhitePLayer;
+
+
+/**
+ * 
+ * @author Alin
+ * 	Clasa Board contine: 
+ * 	gameBoard: tabla este implementata printr-o lista in care sunt stocate 64 de patrate de la 0 la 63 
+ * 	whitePieces si blackPieces sunt declarate ca si colectii deoarece nu ne intereseaza ordinea in care piesele sunt stocate si nici pozitia lor in vector
+ * 	whitePlayer si blackPlayer sunt evident jucatorii, iar jucatorul curent este currentPlayer prin care se fac mutarile
+ *	Tabla de sah a fost mapata in asa fel incat piesele negre se afla in partea superioara iar cele albe in cea inferioara 
+ *	Numerotarea patratelor tablei a fost implementata pornind de la pozitia 8-a=0 la pozitia 1-h=63 (ex: 4-d=35)
+ *	In clasa Builder care am construit-o in interiorul clasei Board se creeaza de fiecare data cand o modificare este adusa tablei, o noua tabla de joc
+ *	Pentru jucatorul curent se stabilesc toate piesele active(metoda "calculateActivePieces") de pe tabla si se adauga intr-o lista toate mutarile posibile cu aceste piese(metoda "calculateLegalMoves") 
+ *	Metoda createStandardBoard realizeaza o tabla dupa modelul celei de pe Wikipedia(https://en.wikipedia.org/wiki/Chess)
+ *
+ */
+
 
 public class Board {
 	private List<Tile> gameBoard;
@@ -130,13 +142,11 @@ public class Board {
 
 		builder.setMoveMaker(Alliance.WHITE);
 		return builder.build();
-
 	}
 
 	public static class Builder {
 		Map<Integer, Piece> boardConfig;
 		Alliance nextMoveMaker;
-		Pawn enPassantPawn;
 
 		public Builder() {
 			this.boardConfig = new HashMap<>();
@@ -145,7 +155,6 @@ public class Board {
 		public Builder setPiece(Piece piece) {
 			this.boardConfig.put(piece.getPiecePosition(), piece);
 			return this;
-
 		}
 
 		public Builder setMoveMaker(Alliance nextMoveMaker) {
@@ -156,12 +165,6 @@ public class Board {
 		public Board build() {
 			return new Board(this);
 		}
-
-		public void setEnPassantPawn(Pawn EnPassantPawn) {
-
-			this.enPassantPawn = enPassantPawn;
-		}
-
 	}
 
 	@Override
@@ -175,7 +178,6 @@ public class Board {
 			}
 		}
 		return builder.toString();
-
 	}
 
 	public Collection<Move> getAllLegalMoves() {

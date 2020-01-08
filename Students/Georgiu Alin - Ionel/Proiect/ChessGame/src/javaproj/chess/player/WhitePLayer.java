@@ -1,16 +1,10 @@
 package javaproj.chess.player;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import javaproj.chess.board.Board;
 import javaproj.chess.board.Move;
-import javaproj.chess.board.Tile;
 import javaproj.chess.pieces.Alliance;
 import javaproj.chess.pieces.Piece;
-import javaproj.chess.pieces.Rook;
 
 public class WhitePLayer extends Player {
 

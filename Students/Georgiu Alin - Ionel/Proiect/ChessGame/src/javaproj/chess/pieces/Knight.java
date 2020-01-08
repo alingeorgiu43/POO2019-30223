@@ -1,17 +1,17 @@
 package javaproj.chess.pieces;
 
 import java.util.ArrayList;
+
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
-
 import javaproj.chess.board.Board;
 import javaproj.chess.board.Move;
 import javaproj.chess.board.Tile;
-import javaproj.chess.pieces.Piece.PieceType;
 import javaproj.chess.board.BoardUtils;
+
 
 public class Knight extends Piece {
 
