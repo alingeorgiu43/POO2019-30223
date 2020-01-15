@@ -5,11 +5,11 @@ import javaproj.chess.pieces.Piece;
 
 /** 
  * 
- * @author Alin
  *	In clasa Move se executa mutari ale pieselor pe tabla
  *	Exista doua mari tipuri de mutari implementate in doua clase separate care mostenesc din clasa principala Move:
  * 	1. Mutare pe o locatie goala (MajorMove)
  * 	2. Mutare pe o locatie ocupata de o piesa a oponentului (AttackMove)
+ *  @author Alin
  *
  */
 public abstract class Move {

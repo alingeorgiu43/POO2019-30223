@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"javaproj.chess.board"},{"l":"javaproj.chess.controller"},{"l":"javaproj.chess.gui"},{"l":"javaproj.chess.pieces"},{"l":"javaproj.chess.player"}]

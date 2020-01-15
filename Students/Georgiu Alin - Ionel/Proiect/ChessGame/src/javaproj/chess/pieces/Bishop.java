@@ -13,12 +13,11 @@ import javaproj.chess.board.Tile;
 
 /**
  * 
- * @author Alin
  * Bishop mosteneste din clasa Piece 
  * Implementeaza metoda calculateLegalMoves pentru a calcula toate posibilele mutari pe care piesa le poate face si o alege pe cea mai buna 
  * La mutarea piesei se va contrui un nou Bishop, iar cel anterior va fi sters
  * CANDIDATE_MOVE_VECTOR_COORDINATES: au fost calculate parcurgand matricea la stanga numarand pasii daca numarul e negativ si la dreapta daca nuamrul e pozitiv
- *
+ * @author Alin
  */
 
 public class Bishop extends Piece {

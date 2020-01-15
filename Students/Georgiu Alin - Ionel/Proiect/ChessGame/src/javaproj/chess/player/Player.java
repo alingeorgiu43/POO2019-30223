@@ -15,11 +15,10 @@ import javaproj.chess.pieces.King;
 import javaproj.chess.pieces.Piece;
 /**
  * 
- * @author Alin
  *  Clasa Player contine tabla de sah, mutarile legale pe care le poate face jucatorul,
  *  regele acelui jucator si daca regele este sau nu un check
  *  Metoda establishKing() parcurge toate piesele active si daca gaseste regele il returneaza 
- *  
+ *  @author Alin
  *
  */
 public abstract class Player {
@@ -51,16 +50,13 @@ public abstract class Player {
 	}
 
 	private King establishKing() {
-		King piece=new King(4, Alliance.WHITE);
-		return piece;
-/*
 		for (final Piece piece : getActivePieces()) {
 			if (piece.getPieceType().isKing()) {
 				return (King) piece;
 			}
 		}
 		throw new RuntimeException("This is not an allowed chess table");
-		*/
+		
 	}
 
 	public boolean isInCheck() {

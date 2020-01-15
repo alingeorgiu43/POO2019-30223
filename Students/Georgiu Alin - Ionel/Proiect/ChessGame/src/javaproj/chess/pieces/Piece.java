@@ -6,7 +6,6 @@ import javaproj.chess.board.Move;
 
 /**
  * 
- * @author Alin
  * Clasa Piece este abstracta si va fi mostenita de fiecare clasa care descrie piesele de sah
  * Clasa stabileste:
  *  -piecePosition: pozitia piesei pe tabla ce este calculata precum pentru o matrice 8x8 si poate avea valori intre 0 si 63
@@ -14,7 +13,7 @@ import javaproj.chess.board.Move;
  *  -isFirstMove: daca este prima mutare a piesei respective 
  *  -pieceType: tipul piecei care va fi descris printr-un enum unde sunt implementate toate tipurile de piese si metode care returneaza daca sunt de un anume tip 
  *  -cachedHashCode: pentru fiecare piesa s-a stabilit un cod unic prin functia computeHashCode() la crearea tablei de sah 
- *
+ *  @author Alin
  */
 
 public abstract class Piece {

@@ -17,7 +17,6 @@ import javaproj.chess.player.WhitePLayer;
 
 /**
  * 
- * @author Alin
  * 	Clasa Board contine: 
  * 	gameBoard: tabla este implementata printr-o lista in care sunt stocate 64 de patrate de la 0 la 63 
  * 	whitePieces si blackPieces sunt declarate ca si colectii deoarece nu ne intereseaza ordinea in care piesele sunt stocate si nici pozitia lor in vector
@@ -27,7 +26,7 @@ import javaproj.chess.player.WhitePLayer;
  *	In clasa Builder care am construit-o in interiorul clasei Board se creeaza de fiecare data cand o modificare este adusa tablei, o noua tabla de joc
  *	Pentru jucatorul curent se stabilesc toate piesele active(metoda "calculateActivePieces") de pe tabla si se adauga intr-o lista toate mutarile posibile cu aceste piese(metoda "calculateLegalMoves") 
  *	Metoda createStandardBoard realizeaza o tabla dupa modelul celei de pe Wikipedia(https://en.wikipedia.org/wiki/Chess)
- *
+ * @author Alin 
  */
 
 
@@ -49,7 +48,11 @@ public class Board {
 		this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
 		this.currentPlayer = builder.nextMoveMaker.choosePlayer(this.whitePlayer, this.blackPlayer);
 	}
-
+/**
+ * 
+ * @param pieces
+ * @return
+ */
 	private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
 		List<Move> legalMoves = new ArrayList<>();
 		for (Piece piece : pieces) {

@@ -6,11 +6,11 @@ import javaproj.chess.player.WhitePLayer;
 
 /**
  * 
- * @author Alin
  * Enum Alliance va returna directia in care o piesa este mutata,
  * daca piesa este alba sau neagra 
  * si alege tipul jucatorului (WhitePlayer sau BlackPlayer)
  * Toate metodele au fost declarate abstract si vor fi implementate pentru fiecare din cele doua tipuri enum (WHITE si BLACK)
+ * @author Alin
  */
 
 public enum Alliance {

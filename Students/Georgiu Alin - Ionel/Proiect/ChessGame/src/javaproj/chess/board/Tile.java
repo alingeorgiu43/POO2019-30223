@@ -11,11 +11,11 @@ import javaproj.chess.pieces.Piece;
 
 /**
  * 
- * @author Alin
  * Clasa Tile este clasa pe care am definit-o pentru a reprezenta un patrat al tablei 
  * In aceasta clasa se stabileste daca o anumita locatie este sau nu ocuapta (isTileOccupied),
  * ce piesa se afla pe un patrat al tablei(getPiece),
  * care sunt locatiile libere unde se pot efectua mutari (createAllPossibleEmptyTiles)
+ * @author Alin
  *
  */
 public abstract class Tile {

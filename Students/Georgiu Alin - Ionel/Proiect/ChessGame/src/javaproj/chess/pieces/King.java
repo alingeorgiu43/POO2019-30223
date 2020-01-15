@@ -14,12 +14,11 @@ import javaproj.chess.board.Tile;
 
 /**
 * 
-* @author Alin
 * King mosteneste din clasa Piece 
 * Implementeaza metoda calculateLegalMoves pentru a calcula toate posibilele mutari pe care piesa le poate face si o alege pe cea mai buna 
 * La mutarea piesei se va contrui un nou King, iar cel anterior va fi sters
 * isCastled stabileste daca regele a executat miscarea unica Castling sau nu 
-*
+*@author Alin
 */
 
 public class King extends Piece{
